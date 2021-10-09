@@ -1,0 +1,44 @@
+<div class="body col-sm-6" >
+    <h2 class="text-center">Sign up</h2>
+
+    <form #f="ngForm" (ngSubmit)="signup(f)">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">your name</label>
+          <input ngModel name="name"  #name="ngModel" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+        <div class="alert alert-danger" *ngIf="name.invalid && name.touched" > name is required </div>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input ngModel name="email"   #email="ngModel" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required email>
+            <div class="alert alert-danger" *ngIf="email.invalid && email.errors?.required" > Email is required </div>
+            <div class="alert alert-danger" *ngIf="email.invalid && email.errors?.email">your input does not match email format</div>
+           
+        
+        </div>
+         
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input ngModel name="pass" #password="ngModel" type="password" class="form-control" id="exampleInputPassword1" required minlength="6">
+          <div class="alert alert-danger" *ngIf="password.invalid && password.errors?.required" > Email is required </div>
+          <div class="alert alert-danger" *ngIf="password.invalid && password.errors?.minlength">Password should be +6 characters</div>
+         
+      
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Confirm Password</label>
+            <input ngModel name="confirmPass" #passwordConfirm="ngModel" type="password" class="form-control" id="exampleInputPassword1" required>
+            <div class="alert alert-danger" *ngIf="passwordConfirm.invalid && passwordConfirm.touched" > password  is required </div>
+            <div class="alert alert-danger" *ngIf="passwordConfirm.value !== password.value && passwordConfirm.touched">Password is not equal</div>
+           
+        </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label"> address</label>
+            <input  ngModel name="address" #address="ngModel" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+            <div class="alert alert-danger" *ngIf="address.invalid && address.touched" > address is required </div>
+
+          </div>
+       
+        <button type="submit" [disabled]="f.invalid" class="btn btn-primary" >Create account</button>
+      </form>
+ 
+</div>
